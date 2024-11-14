@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search history</title>
+    {% load static %}
+    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.png' %}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url("{% static 'images/backgrounds/background2.png' %}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .header {
+            background-color: #f58318;
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+            border-bottom: 5px solid #d76b18;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+            padding: 20px;
+        }
+        .footer {
+            background-color: #f58318;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            border-top: 5px solid #d76b18;
+        }
+        .side-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 200px;
+            height: 100%;
+            background: linear-gradient(to right, #47818D, #9FC1B8);
+            height: 100vh;
+            margin: 0;
+            border-right: 5px solid #d76b18;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            padding-top: 70px;
+            box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .side-menu a {
+            background-color: #f58318;
+            border: none;
+            color: white;
+            font-size: 18px;
+            text-align: center;
+            padding: 15px 0;
+            width: 100%;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-bottom: 70px;
+            display: block;
+            text-decoration: none;
+        }
+        .side-menu button {
+            background-color: #d76b18;
+            border: none;
+            color: white;
+            font-size: 18px;
+            text-align: center;
+            padding: 15px 0;
+            width: 100%;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-bottom: 70px;
+            display: block;
+            text-decoration: none;
+        }
+
+        .side-menu a:hover, .side-menu button:hover {
+            background-color: #d76b18;
+        }
+
+        .active {
+            background-color: #d76b18;
+        }
+
+        .non_active {
+            background-color: #f58318;
+        }
+
+        .non_active:hover {
+            background-color: #d76b18;
+        }
+        .history-container {
+            margin-top: 20px;
+            width: 80%;
+            max-width: 600px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .history-container h2 {
+            margin-top: 0;
+            text-align: center;
+            color: #f58318;
+        }
+
+        .history-item {
+            margin-bottom: 15px;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.6);
+            border-radius: 5px;
+            border: 1px solid #f58318;
+        }
+
+        .history-item p {
+            margin: 0;
+            font-size: 16px;
+            color: #333;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Weather Site</h1>
+    </div>
+
+    <div class="side-menu">
+        <a href="{% url 'main' %}" class="non_active">Main page</a>
+        <button id="history-btn" class="active" onclick="navigateTo('history')">History</button>
+        <a href="{% url 'logout' %}" class="non_active">Logout</a>
+    </div>
+
+    <div class="container">
+        <div class="history-container">
+            <h2>Search History</h2>
+            {% for entry in history %}
+            <div class="history-item">
+                <p><strong>Місто:</strong> {{ entry.city }}</p>
+                <p><strong>Температура:</strong> {{ entry.temperature }}°C</p>
+                <p><strong>Опис:</strong> {{ entry.description }}</p>
+                <p><strong>Дата запиту:</strong> {{ entry.search_date }}</p>
+                <p><strong>Користувач:</strong> {{ entry.user.username }}</p>
+            </div>
+            {% empty %}
+            <p>Історія пошуків відсутня.</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2024 Всі права захищені</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main page</title>
+    {% load static %}
+    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.png' %}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url("{% static 'images/backgrounds/background2.png' %}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .header {
+            background-color: #f58318;
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+            border-bottom: 5px solid #d76b18;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+            padding: 20px;
+        }
+        .search-form {
+            margin-bottom: 200px;
+            text-align: center;
+        }
+        .search-form input[type="text"] {
+            padding: 10px;
+            width: 300px;
+            border: 2px solid #f58318;
+            border-radius: 5px;
+            font-size: 16px;
+            outline: none;
+        }
+        .search-form button {
+            padding: 10px 20px;
+            background-color: #f58318;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-left: 10px;
+            transition: background-color 0.3s;
+        }
+        .search-form button:hover {
+            background-color: #d76b18;
+        }
+        .weather-info {
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            text-align: center;
+            width: 80%;
+            max-width: 500px;
+        }
+        .weather-info h2 {
+            margin: 0;
+            font-size: 24px;
+            color: #f58318;
+        }
+        .weather-details {
+            margin-bottom: 0px;
+            padding-bottom: 10px;
+        }
+        .weather-details p {
+            margin: 5px 0;
+            font-size: 18px;
+            color: #333;
+        }
+        .footer {
+            background-color: #f58318;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            border-top: 5px solid #d76b18;
+        }
+        .side-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 200px;
+            height: 100%;
+            background: linear-gradient(to right, #47818D, #9FC1B8);
+            height: 100vh;
+            margin: 0;
+            border-right: 5px solid #d76b18;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            padding-top: 70px;
+            box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .side-menu a {
+            background-color: #f58318;
+            border: none;
+            color: white;
+            font-size: 18px;
+            text-align: center;
+            padding: 15px 0;
+            width: 100%;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-bottom: 70px;
+            display: block;
+            text-decoration: none;
+        }
+        .side-menu button {
+            background-color: #d76b18;
+            border: none;
+            color: white;
+            font-size: 18px;
+            text-align: center;
+            padding: 15px 0;
+            width: 100%;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-bottom: 70px;
+            display: block;
+            text-decoration: none;
+        }
+
+        .side-menu a:hover, .side-menu button:hover {
+            background-color: #d76b18;
+        }
+
+        .active {
+            background-color: #d76b18;
+        }
+
+        .non_active {
+            background-color: #f58318;
+        }
+
+        .non_active:hover {
+            background-color: #d76b18;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Weather Site</h1>
+    </div>
+
+    <div class="side-menu">
+        <button id="main-page-btn" class="active" onclick="navigateTo('main')">Main page</button>
+        <a href="{% url 'history' %}" class="non_active">History</a>
+        <a type="submit" class="button"></a>
+    </div>
+
+        <p>&copy; 2024 Всі права захищені</p>
+    </div>
+</body>
+</html>
